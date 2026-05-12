@@ -2,6 +2,8 @@ FROM node
 
 WORKDIR /app
 
+COPY package.json /app
+
 #. root directory
 #./ work directory
 # /app specific directory
