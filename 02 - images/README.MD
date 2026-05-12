@@ -1,12 +1,9 @@
-# docker
-Learn practices about docker and kubernets
-
 Build the image
 > docker build .
 
 Run the Image as a container in a speficic port
 -p machinePort : containerPort
-> docker run -p 3000:3000 {IMAGE_ID}
+> docker run -p 3000:80 {IMAGE_ID}
 
 List the running containers
 > docker ps

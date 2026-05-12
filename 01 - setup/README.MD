@@ -1,6 +1,3 @@
-# docker
-Learn practices about docker and kubernets
-
 Build the image
 > docker build .
 
