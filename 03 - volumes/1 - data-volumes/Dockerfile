@@ -10,6 +10,10 @@ COPY . .
 
 EXPOSE 80
 
-VOLUME [ "/app/feedback" ]
+#anonymous volume will be alive as long with the container
+# VOLUME [ "/app/feedback" ]
+
+#name volumes will persists even if you delete the container
+#run the container with -v flag
 
 CMD ["node", "server.js"]
