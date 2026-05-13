@@ -1,5 +1,7 @@
 FROM node:14
 
+ARG DEFAULT_PORT=80
+
 WORKDIR /app
 
 COPY package.json .
@@ -10,7 +12,9 @@ RUN npm install
 # -v "C:\workspace\study\Docker\03 - volumes\1 - data-volumes:/app:ro"
 COPY . .
 
-EXPOSE 80
+ENV PORT=80
+
+EXPOSE $PORT
 
 #anonymous volume will be alive as long with the container
 # VOLUME [ "/app/feedback" ]
