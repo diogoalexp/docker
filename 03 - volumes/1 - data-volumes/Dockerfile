@@ -14,6 +14,6 @@ EXPOSE 80
 # VOLUME [ "/app/feedback" ]
 
 #name volumes will persists even if you delete the container
-#run the container with -v flag
+#run the container with "-v feedback:/app/feedback" flag with the name:path param
 
-CMD ["node", "server.js"]
+CMD ["npm", "start"]
