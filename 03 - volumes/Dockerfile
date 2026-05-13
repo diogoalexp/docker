@@ -12,7 +12,7 @@ RUN npm install
 # -v "C:\workspace\study\Docker\03 - volumes\1 - data-volumes:/app:ro"
 COPY . .
 
-ENV PORT=80
+ENV PORT=$DEFAULT_PORT
 
 EXPOSE $PORT
 
