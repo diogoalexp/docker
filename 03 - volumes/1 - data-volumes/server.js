@@ -22,7 +22,7 @@ app.get('/exists', (req, res) => {
   res.sendFile(filePath);
 });
 
-console.log('runtime change')
+console.log('runtime log')
 
 app.post('/create', async (req, res) => {
   const title = req.body.title;
