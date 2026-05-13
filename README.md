@@ -1,30 +1,106 @@
-# docker
-Learn practices about docker and kubernets
+# Docker & Kubernetes Learning
 
-Build the image
-> docker build .
+Learn practical Docker and Kubernetes commands and best practices.
 
-Create and Run the Image as a container in a speficic port
--p machinePort : containerPort
-> docker run -p 3000:3000 {IMAGE_ID}
+---
 
-deatched version (no console and logs)
-> docker run -p 3000:3000 -d {IMAGE_ID}
+## Important Commands
 
-Restart an existing container (without creating a new image)
-> docker start {CONTAINER_NAME}
+### Build
 
-Attach the terminal to a running container
->docker attach CONTAINER
+Build a Docker image from a Dockerfile:
 
-List the running containers
-> docker ps
+```bash
+docker build .
+```
 
-List all containers
-> docker ps -a
+### Run and Start
 
-Stop the containers
-> docker stop {CONTAINER_NAME}
+#### Create and Run a Container
 
-## changes
-Everytime you need to make a code change is necessary to build a new image
+Run an image as a container with port mapping:
+
+```bash
+docker run -p 3000:3000 {IMAGE_ID}
+```
+
+**Port mapping:** `-p machinePort:containerPort`
+
+#### Detached Mode
+
+Run a container in the background (no console logs displayed):
+
+```bash
+docker run -p 3000:3000 -d {IMAGE_ID}
+```
+
+#### Restart an Existing Container
+
+Restart a previously created container without creating a new image:
+
+```bash
+docker start {CONTAINER_NAME}
+```
+
+### List Containers
+
+List running containers:
+
+```bash
+docker ps
+```
+
+List all containers (running and stopped):
+
+```bash
+docker ps -a
+```
+
+### Stop
+
+Stop a running container:
+
+```bash
+docker stop {CONTAINER_NAME}
+```
+
+---
+
+### Remove Containers
+
+Remove container by name:
+
+```bash
+docker rm {CONTAINER_NAME} {CONTAINER_NAME}
+```
+
+remove all containers:
+
+```bash
+docker rm *
+```
+
+Remove images by id:
+
+```bash
+docker rmi {IMAGE_ID}
+```
+
+## Useful Commands
+
+### Attach Terminal to Container
+
+Attach your terminal to a running container:
+
+```bash
+docker attach {CONTAINER_NAME}
+```
+
+---
+
+## Important Notes
+
+⚠️ **Every time you make a code change, you must build a new image for the changes to be reflected in the container.**
+
+- Replace `{IMAGE_ID}` with the actual image ID from the build output
+- Replace `{CONTAINER_NAME}` with the actual container name from `docker ps`
