@@ -4,6 +4,9 @@ import GoalInput from './components/goals/GoalInput';
 import CourseGoals from './components/goals/CourseGoals';
 import ErrorAlert from './components/UI/ErrorAlert';
 
+// const backendUrl = 'goals-backend'; // even if the container can communicate, the browser will not undestant this domain
+const backendUrl = 'localhost';
+
 function App() {
   const [loadedGoals, setLoadedGoals] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -14,7 +17,7 @@ function App() {
       setIsLoading(true);
 
       try {
-        const response = await fetch('http://localhost/goals');
+        const response = await fetch(`http://${backendUrl}/goals`);
 
         const resData = await response.json();
 
@@ -39,7 +42,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost/goals', {
+      const response = await fetch(`http://${backendUrl}/goals`, {
         method: 'POST',
         body: JSON.stringify({
           text: goalText,
