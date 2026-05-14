@@ -9,8 +9,8 @@ Run MongoDB Container
 ---------------------
 
 docker run --name mongodb \
-  -e MONGO_INITDB_ROOT_USERNAME=max \
-  -e MONGO_INITDB_ROOT_PASSWORD=secret \
+  -e MONGO_INITDB_ROOT_USERNAME=sa \
+  -e MONGO_INITDB_ROOT_PASSWORD=123 \
   -v data:/data/db \
   --rm \
   -d \
