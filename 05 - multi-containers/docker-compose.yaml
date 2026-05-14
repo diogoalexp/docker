@@ -1,9 +1,11 @@
 version: "3.8"
 services:
+  # --rm and -d are automatically with compose
   mongodb:
     image: 'mongo'
     volumes:
       - data:/data/db
+    container_name: mongodb
     environment:
       # dont need - (dash) with var:key pattern
       MONGO_INITDB_ROOT_USERNAME: sa
@@ -15,8 +17,35 @@ services:
     #docker will automatically create an enviroment with a network with the compose
     # networks:
     #   - goals-net
-  # backend:
-  # frontend:
+  backend:
+    build: ./backend #short pattern
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile #default value will be Dockerfile if not specified
+    #   args:
+    #     some-arg: 1
+    ports:
+      - '80:80'
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/src:/app/src
+    #interactive mode
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
 
 volumes:
   data:
+  logs:

@@ -41,6 +41,8 @@ docker run --name goals-backend \
   -p 80:80 \
   goals-node
 
+> docker run --name goals-backend -v "C:\workspace\study\Docker\05 - multi-containers\backend:/app"  -v logs:/app/logs  -v /app/node_modules -e MONGODB_USERNAME=sa -e MONGODB_PASSWORD=123  --rm -p 80:80 --network goals-net goals-node
+
 ---------------------
 Build React SPA Image
 ---------------------
@@ -59,6 +61,7 @@ docker run --name goals-frontend \
   -it \
   goals-react
 
+> docker run --name goals-frontend -v "C:\workspace\study\Docker\05 - multi-containers\frontend\src:/app/src"  --rm -p 3000:3000 --network goals-net -it goals-react
 ---------------------
 Stop all Containers
 ---------------------
