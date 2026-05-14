@@ -85,7 +85,7 @@ app.delete('/goals/:id', async (req, res) => {
 
 //host.docker.internal only works if we use ports to connect throught the local machine
 mongoose.connect(
-  'mongodb://sa:123@mongodb:27017/course-goals?authSource=admin',
+  `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongodb:27017/course-goals?authSource=admin`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
