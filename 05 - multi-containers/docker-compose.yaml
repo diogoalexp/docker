@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  mongodb:
+    image: 'mongo'
+    volumes:
+      - data:/data/db
+    environment:
+      # dont need - (dash) with var:key pattern
+      MONGO_INITDB_ROOT_USERNAME: sa
+      MONGO_INITDB_ROOT_PASSWORD: 123
+      # - MONGO_INITDB_ROOT_USERNAME=sa
+      # - MONGO_INITDB_ROOT_PASSWORD=123
+    # env_file:
+    #   - ./env/mongo.env
+    #docker will automatically create an enviroment with a network with the compose
+    # networks:
+    #   - goals-net
+  # backend:
+  # frontend:
+
+volumes:
+  data:

@@ -17,6 +17,8 @@ docker run --name mongodb \
   --network goals-net \
   mongo
 
+>docker run --name mongodb -v data:/data/db --rm -d --network goals-net -e MONGO_INITDB_ROOT_USERNAME=sa -e MONGO_INITDB_ROOT_PASSWORD=123 mongo
+
 ---------------------
 Build Node API Image
 ---------------------
@@ -28,8 +30,8 @@ Run Node API Container
 ---------------------
 
 docker run --name goals-backend \
-  -e MONGODB_USERNAME=max \
-  -e MONGODB_PASSWORD=secret \
+  -e MONGODB_USERNAME=sa \
+  -e MONGODB_PASSWORD=123 \
   -v logs:/app/logs \
   -v /Users/maximilianschwarzmuller/development/teaching/udemy/docker-complete/backend:/app \
   -v /app/node_modules \
