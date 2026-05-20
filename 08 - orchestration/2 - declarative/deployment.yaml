@@ -2,12 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: second-app-deployment
+  labels:
+    group: example
 spec: #deployment definition
   replicas: 3 # number of pods
   selector:
     matchLabels: # match the pods you want to control in this deployment by label
       app: second-app
       tier: backend
+    # matchExpressions: # more powerful match approach
+    #   - {key: app, operator: In, values: [second-app, first-app]}
   template: # pods definition
     metadata:
       labels:
@@ -17,5 +21,11 @@ spec: #deployment definition
       containers:
         - name: second-node
           image: diogopereiraezo/kub-first-app:3
+          livenessProbe: #optional to check health status
+            httpGet:
+              path: /
+              port: 8080
+            periodSeonds: 10
+            initialDelaySeconds: 5
         # - name: ...
         #   image: ...
