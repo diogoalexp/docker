@@ -21,6 +21,7 @@ spec: #deployment definition
       containers:
         - name: second-node
           image: diogopereiraezo/kub-first-app:3
+          imagePullPolicy: Always
           livenessProbe: #optional to check health status
             httpGet:
               path: /
