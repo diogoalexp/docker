@@ -1,4 +1,6 @@
 # Main
+*Imperative* is manage throught commands
+
 Start a cluster
 > minikube start --driver=docker
 
