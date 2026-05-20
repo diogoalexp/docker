@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: second-app-deployment
 spec: #deployment definition
-  replicas: 1 # number of pods
+  replicas: 3 # number of pods
   selector:
     matchLabels: # match the pods you want to control in this deployment by label
       app: second-app
