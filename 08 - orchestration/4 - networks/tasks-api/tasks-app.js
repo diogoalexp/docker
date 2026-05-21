@@ -5,7 +5,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 
-const filePath = path.join(__dirname, process.env.TASKS_FOLDER, 'tasks.txt');
+const tasksDir = path.join(__dirname, process.env.TASKS_FOLDER);
+const filePath = path.join(tasksDir, 'tasks.txt');
+
+if (!fs.existsSync(tasksDir)) {
+  fs.mkdirSync(tasksDir, { recursive: true });
+}
+
+if (!fs.existsSync(filePath)) {
+  fs.writeFileSync(filePath, '');
+}
 
 const app = express();
 
@@ -36,9 +45,11 @@ app.get('/tasks', async (req, res) => {
         console.log(err);
         return res.status(500).json({ message: 'Loading the tasks failed.' });
       }
-      const strData = data.toString();
-      const entries = strData.split('TASK_SPLIT');
-      entries.pop(); // remove last, empty entry
+      const strData = data.toString().trim();
+      if (!strData) {
+        return res.status(200).json({ message: 'Tasks loaded.', tasks: [] });
+      }
+      const entries = strData.split('TASK_SPLIT').filter(Boolean);
       console.log(entries);
       const tasks = entries.map((json) => JSON.parse(json));
       res.status(200).json({ message: 'Tasks loaded.', tasks: tasks });
