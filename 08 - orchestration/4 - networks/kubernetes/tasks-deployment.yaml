@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tasks-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tasks
+  template:
+    metadata:
+      labels:
+        app: tasks
+    spec:
+      containers:
+        - name: tasks
+          image: diogopereiraezo/kub-demo-tasks:latest
+          env:
+            - name: AUTH_ADDRESS
+              # value: localhost #only workds inside the same pod
+              # value: "10.102.118.89"
+              value: "auth-service.default" #domains only work inside the cluster
+            - name: TASKS_FOLDER
+              value: tasks
