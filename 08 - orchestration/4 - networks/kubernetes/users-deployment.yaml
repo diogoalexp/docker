@@ -18,4 +18,5 @@ spec:
           env:
             - name: AUTH_ADDRESS
               # value: localhost #only workds inside the same pod
-              value: "10.102.118.89"
+              # value: "10.102.118.89"
+              value: "auth-service.default" #domains only work inside the cluster
