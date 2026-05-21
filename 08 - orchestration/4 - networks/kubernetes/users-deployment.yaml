@@ -17,6 +17,5 @@ spec:
           image: diogopereiraezo/kub-demo-users:latest
           env:
             - name: AUTH_ADDRESS
-              value: localhost
-        - name: auth
-          image: diogopereiraezo/kub-demo-auth:latest
+              # value: localhost #only workds inside the same pod
+              value: "10.102.118.89"
